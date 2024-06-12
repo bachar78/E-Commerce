@@ -22,6 +22,8 @@ target/
 ###
 .mvn
 mvnw.cmd
+mvnw
+.mvn/**
 
 
 ### NetBeans ###
