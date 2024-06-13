@@ -10,7 +10,7 @@ import com.bachar.e_commerce.service.TypeService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -47,7 +47,10 @@ public class ProductController {
             @RequestParam(name = "brandId", required = false) Integer brandId,
             @RequestParam(name = "typeId", required = false) Integer typeId
     ) {
-        Pageable pageable = PageRequest.of(page, size);
+        //Convert order to sort direction
+        Sort.Direction direction = order.equals("asc") ? Sort.Direction.ASC : Sort.Direction.DESC;
+        Sort sorting = Sort.by(direction, sort);
+        Pageable pageable = PageRequest.of(page, size, sorting);
         Page<ProductResponse> productResponseList = productService.getProducts(pageable, brandId, typeId, keyword);
         return new ResponseEntity<>(productResponseList, HttpStatus.OK);
     }
