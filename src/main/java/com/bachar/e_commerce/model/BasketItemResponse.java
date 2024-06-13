@@ -1,14 +1,15 @@
-package com.bachar.e_commerce.entity;
+package com.bachar.e_commerce.model;
 
-import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.redis.core.RedisHash;
 
 @Data
-@RedisHash("BasketItem")
-public class BasketItem {
-    @Id
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class BasketItemResponse {
     private Integer id;
     private String name;
     private String description;

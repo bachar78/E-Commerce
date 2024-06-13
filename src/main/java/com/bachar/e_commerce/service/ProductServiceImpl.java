@@ -1,7 +1,7 @@
 package com.bachar.e_commerce.service;
 
 import com.bachar.e_commerce.entity.Product;
-import com.bachar.e_commerce.exceptions.ProductNotFoundException;
+import com.bachar.e_commerce.exceptions.NotFoundException;
 import com.bachar.e_commerce.model.ProductResponse;
 import com.bachar.e_commerce.repository.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -9,10 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -48,7 +44,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductResponse getProductById(Integer productId) {
         log.info("Get product by id: {}", productId);
-        Product product = productRepository.findById(productId).orElseThrow(() -> new ProductNotFoundException(String.format("Product with id %s not found", productId)));
+        Product product = productRepository.findById(productId).orElseThrow(() -> new NotFoundException(String.format("Product with id %s not found", productId)));
         log.info("Product by id: {} fetched", productId);
         //now convert the product to product response
         return convertToProductionResponse(product);
