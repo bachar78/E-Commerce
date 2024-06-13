@@ -30,10 +30,10 @@ public class ProductServiceImpl implements ProductService {
         log.info("Fetching products !!!!");
         Specification<Product> spec = Specification.where(null);
         if (brandId != null) {
-            spec = spec.and((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("brand").get("id"), brandId));
+            spec = spec.and((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("productBrand").get("id"), brandId));
         }
         if (typeId != null) {
-            spec = spec.and(((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("type").get("id"), typeId)));
+            spec = spec.and(((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("productType").get("id"), typeId)));
         }
 
         if (keyword != null && !keyword.isEmpty()) {
