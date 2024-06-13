@@ -4,10 +4,13 @@ import com.bachar.e_commerce.entity.Product;
 import com.bachar.e_commerce.model.ProductResponse;
 import com.bachar.e_commerce.repository.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -21,14 +24,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductResponse> getProducts() {
+    public Page<ProductResponse> getProducts(Pageable pageable) {
         log.info("Fetching products !!!!");
-        List<Product> products = productRepository.findAll();
-        List<ProductResponse> productResponses = products.stream()
-                .map(this::convertToProductionResponse)
-                .toList();
+        Page<Product> productsPage = productRepository.findAll(pageable);
+        Page<ProductResponse> productResponsePage = productsPage
+                .map(this::convertToProductionResponse);
         log.info("Fetch all products from database");
-        return productResponses;
+        return productResponsePage;
     }
 
     @Override
