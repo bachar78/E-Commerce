@@ -6,6 +6,7 @@ import com.bachar.e_commerce.repository.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,7 +25,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<ProductResponse> getProducts(Pageable pageable) {
+    public Page<ProductResponse> getProducts(Pageable pageable, Integer brandId, Integer typeId, String keyword) {
+        Specification<Product> spec = Specification.where(null);
+        if (brandId != null) {
+            spec = spec.and((root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get("brand").get("id"), brandId));
+        }
         log.info("Fetching products !!!!");
         Page<Product> productsPage = productRepository.findAll(pageable);
         Page<ProductResponse> productResponsePage = productsPage
