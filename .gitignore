@@ -24,6 +24,7 @@ target/
 mvnw.cmd
 mvnw
 .mvn/**
+e-commerce.iml
 
 
 ### NetBeans ###

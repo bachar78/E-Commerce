@@ -1,0 +1,17 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: e-commerce
+  datasource:
+    password: Password
+    url: jdbc:postgresql://localhost:5432/ecommerce
+    username: bachar
+  jpa:
+    hibernate:
+      ddl-auto: update #if you want to restart the data when the app restart put create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
