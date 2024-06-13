@@ -6,17 +6,16 @@ import com.bachar.e_commerce.repository.BrandRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-public class BrandServiceImp implements BrandService {
+public class BrandServiceImpl implements BrandService {
 
     private final BrandRepository brandRepository;
 
-    public BrandServiceImp(BrandRepository brandRepository) {
+    public BrandServiceImpl(BrandRepository brandRepository) {
         this.brandRepository = brandRepository;
     }
 
@@ -35,7 +34,7 @@ public class BrandServiceImp implements BrandService {
     }
 
     private BrandResponse converToBrandResponse(Brand brand) {
-        return BrandResponse.builder().Id(brand.getId())
+        return BrandResponse.builder().id(brand.getId())
                 .name(brand.getName())
                 .build();
     }

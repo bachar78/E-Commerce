@@ -24,7 +24,7 @@ public class Type {
     @Column(name = "Name")
     private String name;
 
-    @OneToMany(mappedBy = "type", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "productType", fetch = FetchType.LAZY)
     private List<Product> products;
 
 }

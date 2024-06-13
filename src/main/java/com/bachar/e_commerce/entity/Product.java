@@ -34,11 +34,11 @@ public class Product {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ProductBrandId", referencedColumnName = "Id")
-    private Brand brand;
+    private Brand productBrand;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ProductTypeId", referencedColumnName = "Id")
-    private Type type;
+    private Type productType;
 
 
 
