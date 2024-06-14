@@ -18,7 +18,7 @@ public class OrderResponse {
     private Integer id;
     private String basketId;
     private ShippingAddress shippingAddress;
-    private Long subtotal;
+    private Long subTotal;
     private Long deliveryFee;
     private Double total;
     private LocalDateTime orderDate;

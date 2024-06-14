@@ -18,9 +18,9 @@ public interface OrderMapper {
     @Mapping(source = "id", target = "id")
     @Mapping(source = "basketId", target = "basketId")
     @Mapping(source = "shippingAddress", target = "shippingAddress")
-    @Mapping(source = "subtotal", target = "subTotal")
+    @Mapping(source = "subTotal", target = "subTotal")
     @Mapping(source = "deliveryFee", target = "deliveryFee")
-    @Mapping(target = "total", expression = "java(order.getSubTotal() + order.getDeliveryFee()")
+    @Mapping(target = "total", expression = "java(order.getSubTotal() + order.getDeliveryFee())")
     @Mapping(target = "orderDate", expression = "java(java.time.LocalDateTime.now())")
     @Mapping(target = "orderStatus", constant = "Pending")
     OrderResponse orderToOrderResponse(Order order);
