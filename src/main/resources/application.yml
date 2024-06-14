@@ -19,4 +19,6 @@ spring:
     redis:
       host: localhost
       port: 6379
+      password: test123
+      timeout: 60000
 
