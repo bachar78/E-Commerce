@@ -39,6 +39,9 @@ public class SecurityFilterChainConfig {
                         .requestMatchers(HttpMethod.POST,
                                 "/api/v1/auth/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/actuator/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/actuator/health").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/swagger-*/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/v*/api-docs/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(smc -> smc
